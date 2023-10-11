@@ -79,9 +79,9 @@ public class GameManager : MonoBehaviour
         {
             for(int i = 0; i < positions.Count; i++)
             {
-                gradesList[i].gradeBlocks.OrderBy(gr => gr.domain);
-                gradesList[i].gradeBlocks.OrderBy(gr => gr.cluster);
-                gradesList[i].gradeBlocks.OrderBy(gr => gr.standardid);
+                gradesList[i].gradeBlocks = gradesList[i].gradeBlocks.OrderBy(gr => gr.domain)
+                                         .ThenBy(gr => gr.cluster)
+                                         .ThenBy(gr => gr.standardid).ToList();
 
                 Debug.Log("Grade : " + gradesList[i].gradeName + " Blocks : " + gradesList[i].gradeBlocks.Count);
                 gradesList[i].CreateJengaStructure(positions[i].position);
