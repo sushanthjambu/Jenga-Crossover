@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Default with 6th grade
         SixthGradeToggle(true);
     }
 
@@ -51,11 +52,18 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Test My Stack button 
+    /// </summary>
     public void DestroyGlassBlocks()
     {
         gameManager.DestroyGradeBlocks(selectedGrade);
     }
 
+    /// <summary>
+    /// Displays panel for block info
+    /// </summary>
+    /// <param name="text"></param>
     public void ShowBlockInfo(string text)
     {
         infoPanel.SetActive(true);

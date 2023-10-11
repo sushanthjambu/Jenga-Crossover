@@ -20,9 +20,13 @@ public class CameraMovement : MonoBehaviour
     }
     void Update()
     {
+        //True when user clciks on 6,7 and 8 buttons in UI
         if (isUpdatingTarget)
         {
+            //Camera to move from front of structures
             Vector3 newPosition = target.position - target.forward + offsetPosition;
+
+            //Lerp for smooth movement
             transform.position = Vector3.Lerp(transform.position, newPosition, moveSpeed * Time.deltaTime);
             if(Vector3.Distance(transform.position, newPosition) < 0.02)
             {

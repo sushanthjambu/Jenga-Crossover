@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GetAPIData());
     }
 
+    /// <summary>
+    /// Get API data asynchronously
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator GetAPIData()
     {
         UnityWebRequest www = UnityWebRequest.Get("https://ga1vqcu3o1.execute-api.us-east-1.amazonaws.com/Assessment/stack");
@@ -37,6 +41,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sorts all the API data by creating relevant objects
+    /// </summary>
+    /// <param name="allBlocks"></param>
     private void SortData(List<JengaBlocks> allBlocks)
     {
         Debug.Log("All Blocks : " + allBlocks.Count);
@@ -79,11 +87,13 @@ public class GameManager : MonoBehaviour
         {
             for(int i = 0; i < positions.Count; i++)
             {
+                //ordering the blocks of each grade
                 gradesList[i].gradeBlocks = gradesList[i].gradeBlocks.OrderBy(gr => gr.domain)
                                          .ThenBy(gr => gr.cluster)
                                          .ThenBy(gr => gr.standardid).ToList();
 
                 Debug.Log("Grade : " + gradesList[i].gradeName + " Blocks : " + gradesList[i].gradeBlocks.Count);
+                //Creating the Jenga structure for each grade
                 gradesList[i].CreateJengaStructure(positions[i].position);
             }
         }
@@ -104,6 +114,10 @@ public class GameManager : MonoBehaviour
         return Instantiate(stoneBlock, pos, rot, parent.transform);
     }
 
+    /// <summary>
+    /// Destroys the Glass blocks for a particular grade.
+    /// </summary>
+    /// <param name="gradeIdentifier"></param>
     public void DestroyGradeBlocks(string gradeIdentifier)
     {
         foreach(Grades grade in gradesList)
@@ -121,6 +135,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Rebuild all the blocks and create structures
+    /// </summary>
     public void RegenerateAllGrades()
     {
         foreach(Grades grade in gradesList)

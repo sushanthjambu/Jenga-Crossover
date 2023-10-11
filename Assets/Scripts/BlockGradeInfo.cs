@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Attached to every block to display infor upon right click
+/// </summary>
 public class BlockGradeInfo : MonoBehaviour
 {
     [HideInInspector] public string grade;
@@ -11,6 +14,15 @@ public class BlockGradeInfo : MonoBehaviour
     [HideInInspector] public string standardId;
     [HideInInspector] public string standardDescription;
 
+    /// <summary>
+    /// Adding info about this block
+    /// </summary>
+    /// <param name="grade"></param>
+    /// <param name="mastery"></param>
+    /// <param name="domain"></param>
+    /// <param name="cluster"></param>
+    /// <param name="standardId"></param>
+    /// <param name="standardDescription"></param>
     public void SetBlockInfo(string grade, int mastery, string domain, string cluster, string standardId, string standardDescription)
     {
         this.grade = grade;
@@ -21,6 +33,9 @@ public class BlockGradeInfo : MonoBehaviour
         this.standardDescription = standardDescription;
     }
 
+    /// <summary>
+    /// Detecting right click on this block
+    /// </summary>
     public void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(1))
